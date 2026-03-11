@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>سفرة رمضان الفاخرة</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-gold: #D4AF37;
+            --dark-blue: #1A252C;
+            --light-bg: #F8F9FA;
+            --text-dark: #2C3E50;
+            --text-light: #7F8C8D;
+            --white: #FFFFFF;
+            --shadow: 0 10px 25px rgba(0,0,0,0.05);
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        body { font-family: 'Cairo', sans-serif; background-color: var(--light-bg); margin: 0; padding: 0; color: var(--text-dark); }
+        .hero { background: linear-gradient(135deg, var(--dark-blue), #2C3E50); color: var(--primary-gold); padding: 60px 20px 80px; text-align: center; position: relative; }
+        .hero h1 { margin: 0; font-size: 3em; font-weight: 900; text-shadow: 0 2px 4px rgba(0,0,0,0.3); }
+        .hero p { color: var(--white); font-size: 1.2em; opacity: 0.9; margin-top: 10px; }
+
+        .search-container { max-width: 600px; margin: -30px auto 40px; padding: 0 20px; position: relative; z-index: 10; }
+        .search-input { width: 100%; padding: 18px 25px; border-radius: 30px; box-shadow: 0 8px 20px rgba(0,0,0,0.15); font-size: 1.1em; font-family: 'Cairo', sans-serif; outline: none; box-sizing: border-box; border: 2px solid transparent; transition: var(--transition); }
+        .search-input:focus { border-color: var(--primary-gold); box-shadow: 0 8px 25px rgba(212, 175, 55, 0.2); }
+
+        .recipes-container { max-width: 800px; margin: 0 auto; padding: 0 20px 50px; }
+        .recipe-card { background: var(--white); border-radius: 15px; margin-bottom: 20px; box-shadow: var(--shadow); overflow: hidden; transition: var(--transition); }
+        .recipe-card:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
+
+        .recipe-header { padding: 20px 25px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; user-select: none; background: var(--white); }
+        .recipe-title { font-size: 1.4em; font-weight: 700; display: flex; align-items: center; gap: 15px; }
+        .icon { font-size: 1.5em; }
+        .toggle-arrow { font-size: 1.2em; color: var(--primary-gold); transition: transform 0.4s ease; }
+
+        .recipe-content { max-height: 0; overflow: hidden; transition: max-height 0.4s ease-out; background: #FAFAFA; }
+        .recipe-inner { padding: 20px 25px 30px; border-top: 1px solid #EEE; }
+        .recipe-card.active .toggle-arrow { transform: rotate(180deg); }
+
+        h3 { color: var(--primary-gold); margin-top: 0; font-size: 1.3em; display: inline-block; border-bottom: 2px solid var(--primary-gold); padding-bottom: 5px; }
+        ul, ol { padding-right: 20px; line-height: 1.9; color: var(--text-light); font-size: 1.1em; }
+        li { margin-bottom: 8px; font-weight: 600; }
+        
+        .no-results { text-align: center; font-size: 1.3em; color: var(--text-light); display: none; padding: 20px; }
+    </style>
+</head>
+<body>
+
+    <header class="hero">
+        <h1>🌙 سفرة رمضان الخليجية</h1>
+        <p>أشهى الوصفات والأطباق بخطوات بسيطة</p>
+    </header>
+    
+    <div class="search-container">
+        <input type="text" id="searchInput" class="search-input" placeholder="🔍 ابحث عن أكلة (مثال: ثريد، مجبوس، سمبوسة)...">
+    </div>
+
+    <div class="recipes-container" id="recipesList">
+        
+        <div class="recipe-card" data-name="ثريد اللحم">
+            <div class="recipe-header">
+                <div class="recipe-title"><span class="icon">🥘</span> ثريد اللحم</div>
+                <div class="toggle-arrow">▼</div>
+            </div>
+            <div class="recipe-content">
+                <div class="recipe-inner">
+                    <h3>📝 المكونات</h3>
+                    <ul>
+                        <li>كيلو لحم غنم مقطع مع العظم</li>
+                        <li>خضار مشكلة مقطعة كبار (بطاطس، كوسا، جزر، قرع)</li>
+                        <li>خبز رقاق إماراتي أو خليجي</li>
+                        <li>بصل، طماطم، صلصة طماطم، وثوم مهروس</li>
+                        <li>بهارات خليجية (بزار)، لومي يابس، ملح</li>
+                    </ul>
+                    <h3>👨‍🍳 طريقة التحضير</h3>
+                    <ol>
+                        <li>يشوح البصل والثوم مع اللحم حتى يتغير لونه، ثم تضاف البهارات واللومي.</li>
+                        <li>يضاف الطماطم والصلصة والماء المغلي ويترك اللحم حتى يقترب من النضج.</li>
+                        <li>تضاف الخضار وتترك على النار حتى تنضج تماماً وتتسبك المرقة.</li>
+                        <li>يكسر خبز الرقاق في طبق تقديم عميق، وتسكب فوقه المرقة الساخنة واللحم والخضار حتى يتشرب الخبز تماماً.</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+
+        <div class="recipe-card" data-name="مجبوس الدجاج">
+            <div class="recipe-header">
+                <div class="recipe-title"><span class="icon">🍛</span> مجبوس الدجاج</div>
+                <div class="toggle-arrow">▼</div>
+            </div>
+            <div class="recipe-content">
+                <div class="recipe-inner">
+                    <h3>📝 المكونات</h3>
+                    <ul>
+                        <li>دجاجة مقطعة نصفين</li>
+                        <li>3 أكواب أرز بسمتي مغسول ومنقوع</li>
+                        <li>بصل مفروم، طماطم، كزبرة خضراء</li>
+                        <li>بهارات صحيحة (قرفة، هيل، مسمار، لومي) وبهارات مطحونة</li>
+                        <li>ماء ورد وزعفران منقوع</li>
+                    </ul>
+                    <h3>👨‍🍳 طريقة التحضير</h3>
+                    <ol>
+                        <li>يسلق الدجاج مع البصل والبهارات الصحيحة والملح حتى ينضج.</li>
+                        <li>يرفع الدجاج من المرق، ويدهن بقليل من الزعفران ويحمر في الفرن.</li>
+                        <li>يصفى المرق، ويطبخ فيه الأرز على نار هادئة حتى يتشرب الماء.</li>
+                        <li>يوزع منقوع الزعفران على وجه الأرز ويغطى القدر لمدة 10 دقائق. يسكب الأرز ويوضع فوقه الدجاج المحمر.</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+
+        <div class="recipe-card" data-name="مضروبة الدجاج">
+            <div class="recipe-header">
+                <div class="recipe-title"><span class="icon">🥣</span> مضروبة الدجاج</div>
+                <div class="toggle-arrow">▼</div>
+            </div>
+            <div class="recipe-content">
+                <div class="recipe-inner">
+                    <h3>📝 المكونات</h3>
+                    <ul>
+                        <li>صدور دجاج أو دجاجة كاملة منزوعة الجلد</li>
+                        <li>كوب ونصف أرز مصري أو شوفان (حسب الرغبة)</li>
+                        <li>بصل، طماطم، وثوم</li>
+                        <li>بهارات خليجية، لومي أسود مطحون، وكمون</li>
+                        <li>سمن بلدي للتقديم</li>
+                    </ul>
+                    <h3>👨‍🍳 طريقة التحضير</h3>
+                    <ol>
+                        <li>يشوح البصل والثوم، يضاف الدجاج والبهارات والطماطم ويقلب جيداً.</li>
+                        <li>يضاف الأرز والماء الساخن ويترك على نار هادئة جداً مع التقليب المستمر.</li>
+                        <li>بعد أن ينضج الدجاج والأرز تماماً ويصبح المزيج ليناً جداً، يرفع العظم (إن وجد).</li>
+                        <li>تُضرب (تُهرس) المكونات بملعقة خشبية قوية حتى تتجانس وتصبح كالعصيدة، وتقدم مع السمن على الوجه.</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+
+        <div class="recipe-card" data-name="صالونة خضار باللحم">
+            <div class="recipe-header">
+                <div class="recipe-title"><span class="icon">🥘</span> صالونة خضار باللحم</div>
+                <div class="toggle-arrow">▼</div>
+            </div>
+            <div class="recipe-content">
+                <div class="recipe-inner">
+                    <h3>📝 المكونات</h3>
+                    <ul>
+                        <li>لحم مقطع قطع متوسطة</li>
+                        <li>خضار (بطاطس، باذنجان، جزر، بامية)</li>
+                        <li>معجون طماطم وطماطم معصورة</li>
+                        <li>بصل، ثوم، وزنجبيل طازج</li>
+                        <li>بزار خليجي وكزبرة مطحونة</li>
+                    </ul>
+                    <h3>👨‍🍳 طريقة التحضير</h3>
+                    <ol>
+                        <li>يحمس البصل مع الثوم والزنجبيل، ثم يضاف اللحم ويقلب حتى يتغير لونه.</li>
+                        <li>تضاف البهارات والطماطم والمعجون ويقلب جيداً.</li>
+                        <li>يضاف الماء الساخن ويترك اللحم لينضج (نصف استواء).</li>
+                        <li>تضاف الخضار وتترك على نار متوسطة حتى تنضج وتتخثر المرقة وتقدم مع الأرز الأبيض.</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+
+        <div class="recipe-card" data-name="بلاليط">
+            <div class="recipe-header">
+                <div class="recipe-title"><span class="icon">🍜</span> بلاليط (سويت خليجي)</div>
+                <div class="toggle-arrow">▼</div>
+            </div>
+            <div class="recipe-content">
+                <div class="recipe-inner">
+                    <h3>📝 المكونات</h3>
+                    <ul>
+                        <li>كيس شعيرية (بلاليط)</li>
+                        <li>كوب سكر (أو حسب الرغبة)</li>
+                        <li>نصف فنجان ماء ورد منقوع فيه زعفران</li>
+                        <li>ملعقة صغيرة هيل مطحون</li>
+                        <li>بيض (لعمل قرص أومليت للوجه)</li>
+                    </ul>
+                    <h3>👨‍🍳 طريقة التحضير</h3>
+                    <ol>
+                        <li>تسلق الشعيرية في ماء مغلي لعدة دقائق فقط حتى تلين (لا تتركها تعجن)، ثم تصفى.</li>
+                        <li>تعاد الشعيرية للقدر، ويضاف لها السكر، الهيل، والزبدة أو السمن وتقلب.</li>
+                        <li>يضاف ماء الورد والزعفران، وتغطى وتترك على نار هادئة جداً لـ 10 دقائق لتتسبك.</li>
+                        <li>يقلى البيض كقرص دائري مع رشة فلفل أسود وملح، ويوضع فوق البلاليط عند التقديم.</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+
+        <div class="recipe-card" data-name="سمبوسة باللحم">
+            <div class="recipe-header">
+                <div class="recipe-title"><span class="icon">🥟</span> سمبوسة باللحم</div>
+                <div class="toggle-arrow">▼</div>
+            </div>
+            <div class="recipe-content">
+                <div class="recipe-inner">
+                    <h3>📝 المكونات</h3>
+                    <ul>
+                        <li>عجينة سمبوسة جاهزة</li>
+                        <li>نصف كيلو لحم مفروم طازج</li>
+                        <li>1 بصلة كبيرة مفرومة ناعماً</li>
+                        <li>ملعقة صغيرة بهارات مشكلة ورشة ملح</li>
+                        <li>نصف كوب بقدونس طازج مفروم</li>
+                    </ul>
+                    <h3>👨‍🍳 طريقة التحضير</h3>
+                    <ol>
+                        <li>في مقلاة، يحمس البصل مع اللحم المفروم حتى ينضج تماماً.</li>
+                        <li>تضاف البهارات والملح ويقلب الخليط ثم يرفع عن النار ليبرد.</li>
+                        <li>يضاف البقدونس وتُحشى عجينة السمبوسة وتلف على شكل مثلثات متساوية.</li>
+                        <li>تقلى في زيت حار وغزير حتى تصبح ذهبية ومقرمشة، وتقدم ساخنة.</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+
+        <div class="recipe-card" data-name="شوربة الشوفان بالدجاج">
+            <div class="recipe-header">
+                <div class="recipe-title"><span class="icon">🥣</span> شوربة الشوفان بالدجاج</div>
+                <div class="toggle-arrow">▼</div>
+            </div>
+            <div class="recipe-content">
+                <div class="recipe-inner">
+                    <h3>📝 المكونات</h3>
+                    <ul>
+                        <li>قطع صدر دجاج صغيرة</li>
+                        <li>5 ملاعق كبيرة شوفان</li>
+                        <li>بصلة وحبة طماطم مطحونة</li>
+                        <li>ملعقة معجون طماطم</li>
+                        <li>ملح، فلفل أسود، وماء مغلي</li>
+                    </ul>
+                    <h3>👨‍🍳 طريقة التحضير</h3>
+                    <ol>
+                        <li>يشوح البصل مع الدجاج في قدر على نار متوسطة.</li>
+                        <li>يضاف الطماطم والمعجون والبهارات وتقلب جيداً.</li>
+                        <li>يضاف الماء المغلي ويترك الدجاج لينضج قليلاً.</li>
+                        <li>يضاف الشوفان مع التحريك المستمر، وتترك على نار هادئة 15 دقيقة.</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+
+        <div class="recipe-card" data-name="لقيمات مقرمشة">
+            <div class="recipe-header">
+                <div class="recipe-title"><span class="icon">🍩</span> لقيمات مقرمشة</div>
+                <div class="toggle-arrow">▼</div>
+            </div>
+            <div class="recipe-content">
+                <div class="recipe-inner">
+                    <h3>📝 المكونات</h3>
+                    <ul>
+                        <li>كوبان دقيق أبيض</li>
+                        <li>ملعقة كبيرة خميرة فورية وسكر</li>
+                        <li>رشة ملح ونصف كوب لبن زبادي</li>
+                        <li>ماء دافئ للعجن وشيرة (قطر) للتقديم</li>
+                    </ul>
+                    <h3>👨‍🍳 طريقة التحضير</h3>
+                    <ol>
+                        <li>تخلط المكونات الجافة معاً في وعاء عميق.</li>
+                        <li>يضاف اللبن والماء تدريجياً وتعجن حتى نحصل على قوام مطاطي.</li>
+                        <li>تغطى العجينة وتترك لتتخمر في مكان دافئ لمدة ساعة.</li>
+                        <li>تشكل على هيئة كرات صغيرة وتقلى في زيت غزير مع التقليب المستمر.</li>
+                        <li>ترفع من الزيت وتغمس في الشيرة الباردة فوراً لتكتسب القرمشة.</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+
+        <div class="recipe-card" data-name="هريس باللحم">
+            <div class="recipe-header">
+                <div class="recipe-title"><span class="icon">🍲</span> هريس باللحم</div>
+                <div class="toggle-arrow">▼</div>
+            </div>
+            <div class="recipe-content">
+                <div class="recipe-inner">
+                    <h3>📝 المكونات</h3>
+                    <ul>
+                        <li>كيلو لحم بعظم (غنم أو عجل)</li>
+                        <li>كيلو حب هريس (قمح) منقوع ليلة كاملة</li>
+                        <li>ماء مغلي وملح خشن</li>
+                        <li>سمن بلدي أصلي للتقديم</li>
+                    </ul>
+                    <h3>👨‍🍳 طريقة التحضير</h3>
+                    <ol>
+                        <li>يسلق اللحم مع حب الهريس في كمية وافرة من الماء.</li>
+                        <li>يترك على نار هادئة جداً لعدة ساعات حتى يذوب اللحم والقمح تماماً.</li>
+                        <li>يزال العظم ويضاف الملح، ويضرب الهريس بمضرب خشبي بقوة حتى ينعم ويتجانس.</li>
+                        <li>يقدم ساخناً في أطباق واسعة ويزين بصب السمن المذاب على الوجه.</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+
+        <div class="recipe-card" data-name="كنافة بالجبن">
+            <div class="recipe-header">
+                <div class="recipe-title"><span class="icon">🥮</span> كنافة بالجبن</div>
+                <div class="toggle-arrow">▼</div>
+            </div>
+            <div class="recipe-content">
+                <div class="recipe-inner">
+                    <h3>📝 المكونات</h3>
+                    <ul>
+                        <li>نصف كيلو عجينة كنافة طازجة</li>
+                        <li>كوب زبدة مذابة أو سمن حيواني</li>
+                        <li>نصف كيلو جبن عكاوي منقوع ومحلى (خالي من الملح)</li>
+                        <li>شيرة (قطر) ثقيلة وباردة، وفستق حلبي مطحون للزينة</li>
+                    </ul>
+                    <h3>👨‍🍳 طريقة التحضير</h3>
+                    <ol>
+                        <li>تفرك عجينة الكنافة بالزبدة المذابة جيداً حتى تتشربها بالكامل.</li>
+                        <li>ترص نصف الكمية في صينية وتضغط بقوة، ثم يوزع الجبن فوقها بانتظام.</li>
+                        <li>تغطى بباقي الكنافة وتخبز في فرن محمى مسبقاً حتى تحمر من الأسفل والأعلى.</li>
+                        <li>تسقى بالشيرة الباردة فور خروجها من الفرن وهي ساخنة، وتزين بالفستق الحلبي.</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+
+        <div class="no-results" id="noResults">
+            عذراً، لم نتمكن من العثور على هذه الأكلة 🍽️
+        </div>
+
+    </div>
+
+    <script>
+        const cards = document.querySelectorAll('.recipe-card');
+
+        cards.forEach(card => {
+            const header = card.querySelector('.recipe-header');
+            const content = card.querySelector('.recipe-content');
+
+            header.addEventListener('click', () => {
+                cards.forEach(c => {
+                    if(c !== card && c.classList.contains('active')) {
+                        c.classList.remove('active');
+                        c.querySelector('.recipe-content').style.maxHeight = null;
+                    }
+                });
+
+                card.classList.toggle('active');
+                if (card.classList.contains('active')) {
+                    content.style.maxHeight = content.scrollHeight + "px";
+                } else {
+                    content.style.maxHeight = null;
+                }
+            });
+        });
+
+        const searchInput = document.getElementById('searchInput');
+        const noResults = document.getElementById('noResults');
+
+        searchInput.addEventListener('keyup', function() {
+            let filter = searchInput.value.toLowerCase();
+            let hasResults = false;
+
+            cards.forEach(card => {
+                let title = card.getAttribute('data-name');
+                if (title.includes(filter)) {
+                    card.style.display = "block";
+                    hasResults = true;
+                } else {
+                    card.style.display = "none";
+                }
+            });
+
+            if (!hasResults) {
+                noResults.style.display = "block";
+            } else {
+                noResults.style.display = "none";
+            }
+        });
+    </script>
+</body>
+</html>
